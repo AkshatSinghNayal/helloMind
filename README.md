@@ -1,4 +1,4 @@
-# helloMind 🧠 — SIH-Project-2025
+# helloMind 🧠 
 
 A **student mental wellness chatbot** built for the Smart India Hackathon 2025.  
 helloMind provides a safe, anonymous space for students to talk about anxiety, stress, and depression — with compassionate AI responses powered by Google Gemini.
@@ -64,6 +64,4 @@ node index.js
 | `GEMINI_API_KEY` | Gemini API key (server-side) |
 | `MONGODB_URI` | MongoDB connection string (optional) |
 
-## Team
 
-Built for **Smart India Hackathon 2025** by Team helloMind.
