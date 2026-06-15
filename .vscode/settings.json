@@ -1,4 +1,5 @@
 {
   "typescript.tsdk": "SIH-Chat-Bot/node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true
+  
 }
