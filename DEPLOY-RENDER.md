@@ -62,6 +62,7 @@ With backend:
   - VITE_API_BASE_URL=http://localhost:8787
 - Start frontend: from `SIH-Chat-Bot/`, `npm run dev`
 
+
 Without backend:
 - SIH-Chat-Bot/.env.local
   - VITE_USE_REMOTE_API=false
