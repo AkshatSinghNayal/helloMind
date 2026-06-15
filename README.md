@@ -1,6 +1,7 @@
 # helloMind 🧠 
 
 A **student mental wellness chatbot** 
+
 helloMind provides a safe, anonymous space for students to talk about anxiety, stress, and depression — with compassionate AI responses powered by Google Gemini.
 
 ## About
