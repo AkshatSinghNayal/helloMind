@@ -1,9 +1,48 @@
-/* Tailwind is loaded via CDN in index.html; keep file to satisfy Vite dev server and allow custom overrides later */
 :root {
   color-scheme: dark;
 }
 
-/* Example tweak: ensure body takes full height */
 html, body, #root {
   height: 100%;
+  margin: 0;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float-up {
+  0% { transform: translateY(0) scale(1); opacity: 0.4; }
+  50% { opacity: 0.6; }
+  100% { transform: translateY(-100vh) scale(1.2); opacity: 0; }
+}
+
+@keyframes fade-slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(99, 102, 241, 0.4); }
+  50% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.7); }
+}
+
+.animate-gradient {
+  background: linear-gradient(-45deg, #1e1b4b, #312e81, #0f766e, #1e1b4b);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+.animate-float {
+  animation: float-up linear infinite;
+}
+
+.animate-fade-slide-up {
+  animation: fade-slide-up 0.6s ease-out;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
 }
