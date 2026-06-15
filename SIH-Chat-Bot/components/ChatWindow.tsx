@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import type { ChatSession, Message } from '../types';
 import SendIcon from './icons/SendIcon';
 import MenuIcon from './icons/MenuIcon';
@@ -33,7 +35,38 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message, username }) => {
             <div 
               className={`max-w-xl px-4 py-3 rounded-2xl ${isUser ? 'bg-indigo-600 rounded-br-none' : 'bg-gray-700 rounded-bl-none'} ${isThinking ? 'animate-pulse' : ''}`}
             >
-                <p className="text-white whitespace-pre-wrap">{message.text}</p>
+                {isUser || isThinking ? (
+                    <p className="text-white whitespace-pre-wrap">{message.text}</p>
+                ) : (
+                    <div className="text-white max-h-80 overflow-y-auto">
+                        <ReactMarkdown
+                            remarkPlugins={[remarkGfm]}
+                            components={{
+                                p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                                ul: ({ children }) => <ul className="list-disc list-inside mb-2 space-y-1">{children}</ul>,
+                                ol: ({ children }) => <ol className="list-decimal list-inside mb-2 space-y-1">{children}</ol>,
+                                h1: ({ children }) => <h1 className="text-xl font-bold mb-2 mt-3">{children}</h1>,
+                                h2: ({ children }) => <h2 className="text-lg font-bold mb-2 mt-3">{children}</h2>,
+                                h3: ({ children }) => <h3 className="text-base font-bold mb-1 mt-2">{children}</h3>,
+                                code: ({ className, children, ...props }) => {
+                                    const isInline = !className;
+                                    return isInline ? (
+                                        <code className="bg-gray-800 text-indigo-300 px-1 rounded text-sm font-mono" {...props}>{children}</code>
+                                    ) : (
+                                        <code className="block bg-gray-800 rounded-lg p-3 mb-2 overflow-x-auto text-sm font-mono" {...props}>{children}</code>
+                                    );
+                                },
+                                pre: ({ children }) => <pre className="bg-gray-800 rounded-lg p-3 mb-2 overflow-x-auto text-sm">{children}</pre>,
+                                strong: ({ children }) => <strong className="font-bold">{children}</strong>,
+                                a: ({ children, href }) => <a href={href} className="text-indigo-400 underline hover:text-indigo-300" target="_blank" rel="noopener noreferrer">{children}</a>,
+                                blockquote: ({ children }) => <blockquote className="border-l-4 border-indigo-400 pl-3 italic text-gray-300 mb-2">{children}</blockquote>,
+                                hr: () => <hr className="border-gray-600 my-3" />,
+                            }}
+                        >
+                            {message.text}
+                        </ReactMarkdown>
+                    </div>
+                )}
             </div>
         </div>
     );
